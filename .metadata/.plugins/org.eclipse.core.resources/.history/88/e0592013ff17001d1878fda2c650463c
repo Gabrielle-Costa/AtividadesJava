@@ -1,0 +1,60 @@
+package application;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Scanner;
+
+import entities.Contribuintes;
+import entities.pessoaFisica;
+import entities.pessoaJuridica;
+
+public class Main_s14_2 {
+
+	public static void main(String[] args) {
+		Locale.setDefault(Locale.US);
+		Scanner sc = new Scanner (System.in);
+		
+		List<Contribuintes> lista = new ArrayList<>();
+		
+		System.out.println("Digite o numero de contribuintes: ");
+		int n = sc.nextInt();
+		
+		for(int i =1; i <=n; ++i) {
+			System.out.println("Digite os dados do " + i + "º contribuinte: ");
+			System.out.print("Pessoa fisica ou juridica (f/j)? ");
+			char ch = sc.next().charAt(0);
+			System.out.print("Nome: ");
+			String nome = sc.next();
+			System.out.print("Renda anual: ");
+			double rendaAnual = sc.nextDouble();
+			if (ch =='f') {
+				System.out.print("Despesa com saude: ");
+				double custoSaude = sc.nextDouble();
+				lista.add(new pessoaFisica(nome, rendaAnual, custoSaude));
+				
+			}
+			if (ch == 'j') {
+				System.out.print("Numero de funcionarios: ");
+				int nf = sc.nextInt();
+				lista.add(new pessoaJuridica(nome, rendaAnual, nf));
+			}
+		}
+		
+		System.out.println();
+		double taxaTotal = 0.0;
+		for(Contribuintes c : lista) {
+			System.out.println(c.getNome()+ String.format(": R$ %.2f", c.taxa()));
+			taxaTotal += c.taxa();
+			
+		}
+		System.out.println();
+		System.out.printf("TAXA TOTAL: %.2f", taxaTotal);
+		
+		
+		
+		sc.close();
+
+	}
+
+}

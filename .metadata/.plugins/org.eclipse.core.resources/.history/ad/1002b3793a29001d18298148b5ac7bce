@@ -1,0 +1,43 @@
+package entities;
+
+import java.util.Date;
+import java.util.Objects;
+
+public class Usuario implements Comparable<Usuario> {
+	
+	private String nome;
+	private Date dtAcesso;
+	
+	public Usuario(String nome, Date dtAcesso) {
+		super();
+		this.nome = nome;
+		this.dtAcesso = dtAcesso;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public Date getDtAcesso() {
+		return dtAcesso;
+	}
+
+	public void setDtAcesso(Date dtAcesso) {
+		this.dtAcesso = dtAcesso;
+	}
+	
+	
+
+	@Override
+	public int compareTo(Usuario other) {
+		return nome.toUpperCase().compareTo(other.getNome().toUpperCase());
+	}
+
+
+	
+
+}

@@ -1,0 +1,30 @@
+package application;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class Main_s19_ex {
+	
+	String caminho = "C:\\Users\\gabby\\OneDrive\\Área de Trabalho\\Java Udemy\\Seção 19\\in.txt";
+
+	File arquivo = new File(caminho);
+
+	//String arquivo = caminho.getParent();
+
+	try(BufferedReader bf = new BufferedReader(new FileReader(caminho))){
+		
+		String linha = bf.readLine();
+		while(linha != null) {
+			
+		}
+		
+		
+
+	}catch(	IOException e){
+		System.out.println("Erro: " + e.getMessage());
+
+	}
+
+}

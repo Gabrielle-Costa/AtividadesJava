@@ -1,0 +1,56 @@
+package application;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.util.Date;
+import java.util.LinkedHashSet;
+import java.util.Set;
+
+import entities.Usuario;
+
+public class Main_s19_ex {
+
+	public static void main(String[] args) throws ParseException {
+
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+		String caminho = "C:\\Users\\gabby\\OneDrive\\Área de Trabalho\\Java Udemy\\Seção 19\\in.txt";
+		Set<Usuario> acesso = new LinkedHashSet<>();
+		int cont = 0;
+
+		try (BufferedReader bf = new BufferedReader(new FileReader(caminho))) {
+
+			String linha = bf.readLine();
+			while (linha != null) {
+				String[] vec = linha.split(" ");
+				String nome = vec[0];
+				String dt = vec[1];
+				Date dtAcesso = Date.from(Instant.parse(dt));
+				
+				Usuario user = new Usuario(nome, dtAcesso);
+				//System.out.println(user.getNome() + "-++-" + sdf.format(user.getDtAcesso()));
+				acesso.add(user);
+
+				linha = bf.readLine();
+			}
+
+		} catch (IOException e) {
+			System.out.println("Erro: " + e.getMessage());
+
+		}
+
+		for (Usuario u : acesso) {
+			if (u.equals(u.getNome())== true) {
+				cont= cont + cont;
+			}
+			//System.out.println("Nome:" + u.getNome() + " data: " + sdf.format(u.getDtAcesso()));
+		}
+		
+		System.out.println("Total de usuarios: " + cont);
+
+	}
+}

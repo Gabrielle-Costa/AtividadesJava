@@ -1,0 +1,51 @@
+package application;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Set;
+import java.util.TreeSet;
+
+import entities.Usuario;
+
+public class Main_s19_ex {
+
+	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+
+	String caminho = "C:\\Users\\gabby\\OneDrive\\Área de Trabalho\\Java Udemy\\Seção 19\\in.txt";
+
+	File arquivo = new File(caminho);
+	Set<Usuario> acesso = new TreeSet<>();
+
+	try (BufferedReader bf = new BufferedReader(new FileReader(caminho)))
+	{
+
+		String linha = bf.readLine();
+		while (linha != null) {
+			String[] vec = linha.split(" ");
+			String nome = vec[0];
+			Date dtAcesso = sdf.parse(vec[1]);
+
+			Usuario user = new Usuario(nome, dtAcesso);
+			acesso.add(user);
+
+			linha = bf.readLine();
+		}
+	}
+
+	catch(IOException e){
+		System.out.println("Erro: " + e.getMessage());
+
+	}
+
+	for(
+	Usuario u:acesso)
+	{
+		System.out.println(u);
+	}
+
+}
+}

@@ -1,0 +1,61 @@
+package application;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeMap;
+
+import entities.Produto;
+
+public class Main_s19_ex2 {
+
+	public static void main(String[] args) {
+		
+		Map<String, String> cokies = new TreeMap<>();
+		
+		cokies.put("username","Maria");
+		cokies.put("phone","9894652");
+		cokies.put("email","maria@gmail.com");
+		
+		cokies.remove("email");
+		
+		System.out.println("Cokies: ");
+		for(String s: cokies.keySet()) {
+			System.out.println(s + ": " + cokies.get(s));
+		}
+		System.out.println();
+		
+		Map<Produto, Double> mapProd = new HashMap<>();
+		
+		Produto p1 = new Produto("TV", 1200.0);
+		Produto p2 = new Produto("Notebook", 3100.00);
+		Produto p3 = new Produto("SmartPhone", 910.0);
+		
+		mapProd.put(p1,50.0);
+		mapProd.put(p2, 90.0);
+		mapProd.put(p3,78.0);
+		
+		for(Produto p: mapProd.keySet()) {
+			System.out.println("Nome: " + p.getNomePord() + " Valor:" + p.getPreco() + " Estoque: " + mapProd.get(p));
+		}
+		
+		mapProd.remove(p1);
+		
+		
+		System.out.println();
+		for(Produto p: mapProd.keySet()) {
+			System.out.println("Nome: " + p.getNomePord() + " Valor:" + p.getPreco() + " Estoque: " + mapProd.get(p));
+			
+		}
+		System.out.println("Confere se contém chave: " + mapProd.containsKey(p1));
+		System.out.println("Tamanho: " + mapProd.size());
+		System.out.println("Valores: " + mapProd.values());
+
+		
+		
+		
+		
+		
+
+	}
+
+}
